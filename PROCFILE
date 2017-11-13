@@ -1,2 +1,2 @@
-test: node scripts/server.js
-# client: node client.js
+# test: node scripts/server.js
+client: node scripts/client.js
