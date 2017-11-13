@@ -1,0 +1,86 @@
+{
+    "id": "email.json",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Base Email",
+    "description": "Base email payload that has different template",
+    "type": "object",
+    "definitions": {
+        "email": {
+            "properties": {
+                "sender": {
+                    "type": "object",
+                    "description": "Describes the sender information",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "The display name of the sender, not configurable"
+                        },
+                        "email": {
+                            "type": "string",
+                            "format": "email",
+                            "description": "The email of the sender, not configurable"
+                        },
+                        "subject": { "type": "string" }
+                    },
+                    "required": [
+                        "email", "name", "subject"
+                    ]
+                },
+                "recipient": {
+                    "type": "object",
+                    "description": "Describes the recipient information",
+                    "properties": {
+                        "email": { "type": "string", "format": "email" },
+                        "name": { "type": "string" }
+                    },
+                    "required": [
+                        "email"
+                    ]
+                },
+                "api": {
+                    "type": "object",
+                    "description": "Describes the config for the Netcore Email Service Provider",
+                    "properties": {
+                        "url": { "type": "string", "format": "url", "description": "The URL of the Email Service Provider, not configurable" },
+                        "key": { "type": "string", "description": "The API Key of the Email Service Provider, not configurable" },
+                        "tags": { "type": "string", "description": "The tags to pass to the Email Service Provider, not configurable" }
+                    },
+                    "required": [
+                        "url",
+                        "key"
+                    ]
+                },
+                "template": {
+                    "type": "object",
+                    "description": "Describes the selected template id and corresponding name",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "description": "The template id of that is stored in Falconide Web UI. 6035 = job",
+                            "enum": [6035]
+                        },
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "welcome", "job"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "type"
+                    ]
+                }
+            },
+            "required": [
+                "sender",
+                "recipient",
+                "api",
+                "template"
+            ]
+        }
+    },
+    "allOf": [
+        { "$ref": "#/definitions/email" }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+    "id": "job.json",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Job Email Template",
+    "description": "Email template payload for saved search feature that returns job recommendations",
+    "type": "object",
+    "definitions": {
+        "job": {
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "salary": {
+                    "type": "string"
+                },
+                "sellingPoints": {
+                    "type": "array"
+                },
+                "sellingPointsCount": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "skill": {
+                    "type": "string"
+                },
+                "companyLogo": {
+                    "type": "string",
+                    "format": "url"
+                },
+                "companyImage": {
+                    "type": "string",
+                    "format": "url"
+                },
+                "hasImages": {
+                    "type": "boolean"
+                },
+                "isPremium": {
+                    "type": "boolean"
+                },
+                "isLastItem": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "title",
+                "company",
+                "description",
+                "hasImages",
+                "isPremium",
+                "isLastItem"
+            ]
+        }
+    },
+    "allOf": [
+        { "$ref": "#/definitions/job" }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "id": "jobs.json",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Jobs",
+    "description": "An array of jobs data",
+    "type": "object",
+    "properties": {
+        "collections": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "job.json"
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [
+                "jobs"
+            ]
+        },
+        "models": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "keyword": { "type": "string", "minLength": 3 },
+                "location": { "type": "string", "minLength": 3 }
+            },
+            "required": [
+                "keyword", "location"
+            ]
+        }
+    },
+    "required": [
+        "collections"
+    ]
+}

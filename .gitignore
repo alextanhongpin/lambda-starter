@@ -1,0 +1,10 @@
+# Exclude environment variables
+.env
+
+# Exclude folders
+.nyc_output
+.serverless
+node_modules
+data
+dist
+coverage
