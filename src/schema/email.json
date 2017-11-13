@@ -57,7 +57,7 @@
                         "id": {
                             "type": "integer",
                             "description": "The template id of that is stored in Falconide Web UI. 6035 = job",
-                            "enum": [6035]
+                            "enum": [6035, 6053]
                         },
                         "type": {
                             "type": "string",

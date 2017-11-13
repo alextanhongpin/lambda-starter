@@ -44,7 +44,7 @@ const config = convict({
     welcomeTemplate: {
         doc: 'The ID of the template uploaded to Falconide Web Dashboard',
         format: Number,
-        default: 6035,
+        default: 6053,
         env: 'WELCOME_TEMPLATE'
     },
     tags: {

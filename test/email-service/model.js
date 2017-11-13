@@ -48,14 +48,12 @@ describe('Email Model', () => {
     it('should validate the welcome template', async() => {
         const request = Object.assign({}, base, {
             template: {
-                id: 6035,
+                id: 6053,
                 type: 'welcome'
             },
-            collections: {
-                name: 'greeting'
-            },
-            model: {
-                greeting: 'hello'
+            models: {
+                keyword: 'hello',
+                "location": "selangor"
             }
         })
         try {

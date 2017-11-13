@@ -7,21 +7,13 @@
     "properties": {
         "model": {
             "properties": {
-                "greeting": { "type": "string" }
+                "keyword": { "type": "string", "minimum": 3 },
+                "location": { "type": "string", "minimum": 3 }
             },
             "required": [
-                "greeting"
-            ]
-        },
-        "collections": {
-            "type": "object",
-            "properties": {
-                "name": { "type": "string" }
-            },
-            "required": [
-                "name"
+                "keyword", "location"
             ]
         }
     },
-    "required": ["model", "collections"]
+    "required": ["models"]
 }

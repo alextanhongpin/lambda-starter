@@ -7,36 +7,38 @@ const sns = new AWS.SNS()
 
 const jobs = require('../src/data/job.json')
 
-const payload = {
-    sender: {
-        subject: 'Hello lambda!'
-    },
-    recipient: {
-        email: 'alextan220990@gmail.com',
-        name: 'John Doe'
-    },
-    template: {
-        type: 'job'
-    },
-    models: {
-        name: 'John Doe',
-        keyword: 'Work',
-        location: 'Selangor'
-    },
-    collections: {
-        jobs
+function sendJob() {
+    const payload = {
+        sender: {
+            subject: 'Hello lambda!'
+        },
+        recipient: {
+            email: 'alextan220990@gmail.com',
+            name: 'John Doe'
+        },
+        template: {
+            type: 'job'
+        },
+        models: {
+            name: 'John Doe',
+            keyword: 'Work',
+            location: 'Selangor'
+        },
+        collections: {
+            jobs
+        }
     }
-}
 
-const params = {
-    Message: JSON.stringify(payload),
-    TopicArn: process.env.SNS_TOPIC
-}
-
-sns.publish(params, (error, done) => {
-    if (error) {
-        console.log(error)
-        return
+    const params = {
+        Message: JSON.stringify(payload),
+        TopicArn: process.env.SNS_TOPIC
     }
-    console.log('success', done)
-})
+
+    sns.publish(params, (error, done) => {
+        if (error) {
+            console.log(error)
+            return
+        }
+        console.log('success', done)
+    })
+}
