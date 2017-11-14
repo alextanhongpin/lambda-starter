@@ -24,11 +24,29 @@
             "type": "object",
             "properties": {
                 "name": { "type": "string" },
-                "keyword": { "type": "string", "minLength": 3 },
-                "location": { "type": "string", "minLength": 3 }
+                "keyword": { "type": "string" },
+                "location": { "type": "string" },
+                "unsubscribeLink": { "type": "string", "format": "url" },
+                "termsLink": { "type": "string", "format": "url" },
+                "privacyLink": { "type": "string", "format": "url" },
+                "contactUsLink": { "type": "string", "format": "url" },
+                "callToAction": { "type": "string", "default": "View more jobs" },
+                "callToActionLink": { "type": "string", "format": "url" },
+                "countryCopyrightName": { "type": "string", "minLength": 3, "description": "The copyright name that changes based on country", "default": "Malaysia" },
+                "jobstreetLink": { "type": "string", "format": "url", "default": "http://www.jobstreet.com.my/" },
+                "facebookLink": { "type": "string", "format": "url", "default": "https://www.facebook.com/jobstreet/" },
+                "twitterLink": { "type": "string", "format": "url", "default": "https://twitter.com/jobstreetmy?lang=en" }
             },
             "required": [
-                "keyword", "location"
+                "name",
+                "keyword",
+                "location",
+                "unsubscribeLink",
+                "termsLink",
+                "privacyLink",
+                "contactUsLink",
+                "callToActionLink",
+                "countryCopyrightName"
             ]
         }
     },

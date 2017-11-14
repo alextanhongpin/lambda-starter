@@ -15,7 +15,9 @@
         "companyImage": "http://placehold.it/160x160",
         "hasImages": false,
         "isPremium": false,
-        "isLastItem": false
+        "isLastItem": false,
+        "isConfidential": false,
+        "link": "http://test.com"
     },
     {
         "title": "Senior Web Developer",
@@ -28,7 +30,9 @@
         "companyImage": "http://placehold.it/160x160",
         "hasImages": false,
         "isPremium": false,
-        "isLastItem": false
+        "isLastItem": false,
+        "isConfidential": false,
+        "link": "http://test.com"
     },
     {
         "title": "Senior Web Developer",
@@ -41,6 +45,8 @@
         "companyImage": "http://placehold.it/160x160",
         "hasImages": true,
         "isPremium": true,
-        "isLastItem": true
+        "isLastItem": true,
+        "isConfidential": false,
+        "link": "http://test.com"
     }
 ]

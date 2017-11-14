@@ -42,9 +42,11 @@ const Store = () => {
 
             return new Promise((resolve, reject) => {
                 request(options, (error, response, body) => {
-                    console.log('error:', error)
-                    console.log('body:', body)
-                    console.log('response:', response.statusCode)
+                    if (error) {
+                        console.log('sending #error', error)
+                    }
+                    console.log('success #body', body)
+                    console.log('#statusCode', response.statusCode)
                     error ? reject(error) : resolve(body)
                 })
             })

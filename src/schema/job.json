@@ -57,6 +57,14 @@
                 },
                 "isLastItem": {
                     "type": "boolean"
+                },
+                "link": {
+                    "type": "string",
+                    "format": "url"
+                },
+                "isConfidential": {
+                    "type": "boolean",
+                    "description": "Blind flag to determine if the job is confidential or not"
                 }
             },
             "required": [
@@ -65,7 +73,9 @@
                 "description",
                 "hasImages",
                 "isPremium",
-                "isLastItem"
+                "isLastItem",
+                "link",
+                "isConfidential"
             ]
         }
     },

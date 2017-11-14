@@ -29,7 +29,17 @@ function sendJob() {
         models: {
             name: 'John Doe',
             keyword: 'Work',
-            location: 'Selangor'
+            location: 'Selangor',
+            unsubscribeLink: '',
+            termsLink: '',
+            privacyLink: '',
+            contactUsLink: '',
+            callToAction: 'View more jobs',
+            callToActionLink: '',
+            countryCopyrightName: 'Malaysia',
+            jobstreetLink: 'http://www.jobstreet.com.my/',
+            facebookLink: 'https://www.facebook.com/jobstreet/',
+            twitterLink: 'https://twitter.com/jobstreetmy?lang=en'
         },
         collections: {
             jobs
