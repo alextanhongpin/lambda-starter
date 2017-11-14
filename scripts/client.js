@@ -3,6 +3,13 @@ AWS.config.update({
     region: 'ap-southeast-1',
     credentials: new AWS.SharedIniFileCredentials({ profile: 'email-delivery' })
 })
+
+// In production, pass the AWS Access Key and Secret
+// aws.config.update({
+//     region: 'ap-southeast-1',
+//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+// })
 const sns = new AWS.SNS()
 
 const jobs = require('../src/data/job.json')
