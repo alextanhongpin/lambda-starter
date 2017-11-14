@@ -32,12 +32,22 @@
                     "type": "string"
                 },
                 "companyLogo": {
-                    "type": "string",
-                    "format": "url"
+                    "anyOf": [{
+                        "type": "string",
+                        "format": "url"
+                    }, {
+                        "type": "string",
+                        "maxLength": 0
+                    }]
                 },
                 "companyImage": {
-                    "type": "string",
-                    "format": "url"
+                    "anyOf": [{
+                        "type": "string",
+                        "format": "url"
+                    }, {
+                        "type": "string",
+                        "maxLength": 0
+                    }]
                 },
                 "hasImages": {
                     "type": "boolean"

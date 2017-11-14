@@ -1,7 +1,8 @@
 include .env
 
 deploy:
-	API_KEY=${API_KEY} TEMPLATE=${TEMPLATE} sls deploy
+	yarn install --production
+	API_KEY=${API_KEY} sls deploy
 
 deploy-function:
 	yarn install --production
