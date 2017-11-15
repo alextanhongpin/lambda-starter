@@ -39,7 +39,9 @@ function sendJob() {
             countryCopyrightName: 'Malaysia',
             jobstreetLink: 'http://www.jobstreet.com.my/',
             facebookLink: 'https://www.facebook.com/jobstreet/',
-            twitterLink: 'https://twitter.com/jobstreetmy?lang=en'
+            twitterLink: 'https://twitter.com/jobstreetmy?lang=en',
+            salary: 'RM 3000',
+            count: jobs.length
         },
         collections: {
             jobs
