@@ -23,7 +23,6 @@
         "models": {
             "type": "object",
             "properties": {
-                "name": { "type": "string" },
                 "keyword": { "type": "string" },
                 "location": { "type": "string" },
                 "salary": { "type": "string" },
@@ -41,7 +40,6 @@
                 "twitterLink": { "type": "string", "format": "url", "default": "https://twitter.com/jobstreetmy?lang=en" }
             },
             "required": [
-                "name",
                 "keyword",
                 "location",
                 "salary",

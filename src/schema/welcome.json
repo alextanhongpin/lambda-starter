@@ -7,8 +7,10 @@
     "properties": {
         "model": {
             "properties": {
-                "keyword": { "type": "string", "minimum": 3 },
-                "location": { "type": "string", "minimum": 3 },
+                "keyword": { "type": "string" },
+                "location": { "type": "string" },
+                "salary": { "type": "string" },
+                "specialization": { "type": "string" },
                 "unsubscribeLink": { "type": "string", "format": "url" },
                 "termsLink": { "type": "string", "format": "url" },
                 "privacyLink": { "type": "string", "format": "url" },
@@ -21,6 +23,8 @@
             "required": [
                 "keyword",
                 "location",
+                "salary",
+                "specialization",
                 "unsubscribeLink",
                 "termsLink",
                 "privacyLink",
