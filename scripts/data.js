@@ -3,10 +3,10 @@ const jobs = require('../src/data/job.json')
 module.exports = {
     job: {
         sender: {
-            subject: 'Hello lambda!'
+            subject: `10 new jobs for CEO in current location`
         },
         recipient: {
-            email: 'alextan220990@gmail.com',
+            email: 'salledev@seekasia.com',
             name: 'John Doe'
         },
         template: {
@@ -20,7 +20,7 @@ module.exports = {
             privacyLink: 'http://www.jobstreet.com.my/',
             contactUsLink: 'http://www.jobstreet.com.my/',
             callToAction: 'View more jobs',
-            callToActionLink: '',
+            callToActionLink: 'http://www.jobstreet.com.my/',
             countryCopyrightName: 'Malaysia',
             jobstreetLink: 'http://www.jobstreet.com.my/',
             facebookLink: 'https://www.facebook.com/jobstreet/',
@@ -35,10 +35,10 @@ module.exports = {
     },
     welcome: {
         sender: {
-            subject: 'Welcome to SeekAsia!'
+            subject: `You've subscribed to a Saved Search`
         },
         recipient: {
-            email: 'alextan220990@seekasia.com',
+            email: 'salledev@seekasia.com',
             name: 'John Doe'
         },
         template: {
