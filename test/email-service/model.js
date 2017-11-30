@@ -162,6 +162,7 @@ describe('Job Schema', () => {
       link: 'http://www.jobstreet.com',
       keyword: '',
       isConfidential: false
+
     }
     try {
       const validatedPayload = await schema('job', payload)

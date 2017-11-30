@@ -40,10 +40,6 @@
                 "twitterLink": { "type": "string", "format": "url", "default": "https://twitter.com/jobstreetmy?lang=en" }
             },
             "required": [
-                "keyword",
-                "location",
-                "salary",
-                "specialization",
                 "count",
                 "unsubscribeLink",
                 "termsLink",
