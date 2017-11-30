@@ -9,10 +9,10 @@
  **/
 
 const MockEmailStore = () => {
-    async function send() {
-        return { message: 'SUCCESS', errorcode: '0', errormessage: '' }
-    }
-    return { send }
+  async function send () {
+    return { message: 'SUCCESS', errorcode: '0', errormessage: '' }
+  }
+  return { send }
 }
 
 export default MockEmailStore

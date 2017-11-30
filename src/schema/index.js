@@ -16,36 +16,36 @@ const welcomeSchema = require('../schema/welcome.json')
 const emailSchema = require('../schema/email.json')
 
 const Schema = () => {
-    const ajv = new Ajv({
-        allErrors: true, // Tell AJV to return all errors, instead of just 1 error
-        removeAdditional: true, // Remove additional fields that is not specified in the payload
-        coerceTypes: true // Convert the type to the specified type (e.g. string to int)
-    })
+  const ajv = new Ajv({
+    allErrors: true, // Tell AJV to return all errors, instead of just 1 error
+    removeAdditional: true, // Remove additional fields that is not specified in the payload
+    coerceTypes: true // Convert the type to the specified type (e.g. string to int)
+  })
 
-    const _schemas = {
+  const _schemas = {
         // Load all your schemas here
-        welcome: ajv.compile(welcomeSchema),
-        job: ajv.compile(jobSchema),
-        jobs: ajv.compile(jobsSchema),
-        email: ajv.compile(emailSchema)
-    }
+    welcome: ajv.compile(welcomeSchema),
+    job: ajv.compile(jobSchema),
+    jobs: ajv.compile(jobsSchema),
+    email: ajv.compile(emailSchema)
+  }
 
-    return (name, payload) => {
-        return new Promise((resolve, reject) => {
-            const schema = _schemas[name] ? _schemas[name] : null
-            if (!schema) {
-                return reject(new Error(`no schema with the name ${name} found`))
-            }
-            const valid = schema(payload)
+  return (name, payload) => {
+    return new Promise((resolve, reject) => {
+      const schema = _schemas[name] ? _schemas[name] : null
+      if (!schema) {
+        return reject(new Error(`no schema with the name ${name} found`))
+      }
+      const valid = schema(payload)
 
-            if (!valid) {
-                const error = new Error('invalid Schema')
-                error.message = JSON.stringify(schema.errors)
-                return reject(error)
-            }
-            resolve(payload)
-        })
-    }
+      if (!valid) {
+        const error = new Error('invalid Schema')
+        error.message = JSON.stringify(schema.errors)
+        return reject(error)
+      }
+      resolve(payload)
+    })
+  }
 }
 
 export default Schema

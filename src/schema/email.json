@@ -10,18 +10,39 @@
                 "sender": {
                     "type": "object",
                     "description": "Describes the sender information",
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "description": "The display name of the sender, not configurable"
+                    "oneOf": [{
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "The display name of the sender, not configurable",
+                                    "enum": ["Jobstreet Saved Searches"]
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "format": "email",
+                                    "description": "The email of the sender, not configurable",
+                                    "enum": ["jsavedsearch@jobstreet.com"]
+                                },
+                                "subject": { "type": "string" }
+                            }
                         },
-                        "email": {
-                            "type": "string",
-                            "format": "email",
-                            "description": "The email of the sender, not configurable"
-                        },
-                        "subject": { "type": "string" }
-                    },
+                        {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "The display name of the sender, not configurable",
+                                    "enum": ["Lina Saved Searches"]
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "format": "email",
+                                    "description": "The email of the sender, not configurable",
+                                    "enum": ["linasavedsearch@jobstreet.com"]
+                                },
+                                "subject": { "type": "string" }
+                            }
+                        }
+                    ],
                     "required": [
                         "email", "name", "subject"
                     ]
