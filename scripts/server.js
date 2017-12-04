@@ -34,5 +34,5 @@ function sendWelcome () {
   })
 }
 
-sendJob()
+// sendJob()
 sendWelcome()

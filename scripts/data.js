@@ -35,7 +35,9 @@ module.exports = {
   },
   welcome: {
     sender: {
-      subject: `You've subscribed to a Saved Search`
+      subject: `You've subscribed to a Saved Search`,
+      name: 'Jobstreet Saved Searches',
+      email: 'jsavedsearch@jobstreet.com'
     },
     recipient: {
       email: 'salledev@seekasia.com',
@@ -45,7 +47,7 @@ module.exports = {
       type: 'welcome'
     },
     models: {
-      keyword: 'Work',
+      keyword: '这太棒了',
       location: 'Selangor',
       unsubscribeLink: 'http://www.jobstreet.com.my/',
       termsLink: 'http://www.jobstreet.com.my/',
@@ -56,7 +58,7 @@ module.exports = {
       facebookLink: 'https://www.facebook.com/jobstreet/',
       twitterLink: 'https://twitter.com/jobstreetmy?lang=en',
       salary: 'RM 3000',
-      specialization: 'IT/Technology'
+      specialization: '这太棒了'// 'IT/Technology'
     }
   }
 
