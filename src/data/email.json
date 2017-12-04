@@ -12,7 +12,8 @@
     "models": {
         "name": "John Doe",
         "keyword": "Work",
-        "location": "Selangor"
+        "location": "Selangor",
+        "countryCode": "SG"
     },
     "collections": {
         "jobs": [{
