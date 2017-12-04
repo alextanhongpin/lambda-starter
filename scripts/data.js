@@ -27,7 +27,8 @@ module.exports = {
       twitterLink: 'https://twitter.com/jobstreetmy?lang=en',
       salary: 'RM 3000',
       count: jobs.length,
-      specialization: 'IT/Technology'
+      specialization: 'IT/Technology',
+      countryCode: 'SG'
     },
     collections: {
       jobs
@@ -58,7 +59,8 @@ module.exports = {
       facebookLink: 'https://www.facebook.com/jobstreet/',
       twitterLink: 'https://twitter.com/jobstreetmy?lang=en',
       salary: 'RM 3000',
-      specialization: '这太棒了'// 'IT/Technology'
+      specialization: 'IT/Technology',
+      countryCode: 'SG'
     }
   }
 

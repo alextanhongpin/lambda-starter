@@ -21,8 +21,8 @@ const Store = () => {
         settings: {
           template: template.id
         },
-        tags: api.tags
-                // 'X-APIHEADER': ['ID1', 'ID2'],
+        tags: api.tags,
+        'X-APIHEADER': [models.countryCode]
                 // 'X-APIHEADER_CC': ['A', 'B']
       }
 
