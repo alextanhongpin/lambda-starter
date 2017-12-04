@@ -37,7 +37,8 @@
                 "countryCopyrightName": { "type": "string", "minLength": 3, "description": "The copyright name that changes based on country", "default": "Malaysia" },
                 "jobstreetLink": { "type": "string", "format": "url", "default": "http://www.jobstreet.com.my/" },
                 "facebookLink": { "type": "string", "format": "url", "default": "https://www.facebook.com/jobstreet/" },
-                "twitterLink": { "type": "string", "format": "url", "default": "https://twitter.com/jobstreetmy?lang=en" }
+                "twitterLink": { "type": "string", "format": "url", "default": "https://twitter.com/jobstreetmy?lang=en" },
+                "countryCode": { "type": "string" }
             },
             "required": [
                 "count",
@@ -46,7 +47,8 @@
                 "privacyLink",
                 "contactUsLink",
                 "callToActionLink",
-                "countryCopyrightName"
+                "countryCopyrightName",
+                "countryCode"
             ]
         }
     },
