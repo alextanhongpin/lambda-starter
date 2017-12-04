@@ -40,7 +40,7 @@ module.exports.email = function (event, context, callback) {
       id: templateMatcher[template && template.type],
       type: template && template.type
     },
-    models,
+    models: Object.assign({}, models, { senderEmail: sender && sender.email }),
     collections
   }
 

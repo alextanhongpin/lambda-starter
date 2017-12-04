@@ -63,5 +63,4 @@ module.exports = {
       countryCode: 'SG'
     }
   }
-
 }

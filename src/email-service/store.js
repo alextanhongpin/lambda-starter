@@ -23,7 +23,7 @@ const Store = () => {
         },
         tags: api.tags,
         'X-APIHEADER': [models.countryCode]
-                // 'X-APIHEADER_CC': ['A', 'B']
+        // 'X-APIHEADER_CC': ['A', 'B']
       }
 
       const options = {
