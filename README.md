@@ -1,50 +1,35 @@
-# NodeJS with Babel
+# Lambda Starter
 
-Read more about Babel from [here](https://babeljs.io/).
+Simple starter for AWS Lambda with Serverless Framework. SNS is used to trigger the Lambda, and any failures will be sent to a SQS Dead Letter Queue for retries. The SNS and SQS Dead Letter queue is created automatically when the lambda is deployed.
 
-## Clone
+## Config
 
-```bash
-git clone https://github.com/alextanhongpin/node-rest.git
-git remote rm origin
-git remote add origin <your-git-path>
-```
-
-## Run
-To trigger the email delivery, you can publish a new payload to SNS.
-
-```javascript
-const aws = require('aws-sdk')
-const sns = new aws.SNS()
-
-const params = {
-    Message: JSON.stringify(body),
-    TopicArn: process.env.SNS_TOPIC
-}
-sns.publish(params, callback)
-```
-
-## Onion Architecture
-
-![Onion Architecture](/assets/onion_architecture.png)
-
-The architecture is based on the principle of [Dependency Inversion](https://dzone.com/articles/perfecting-your-solid-meal-with-dip). There are layers wrapping around each circle, forming the famous *onion*. Between the layers of the Onion, there is a strong _dependency rule_: **outer layers can depend on lower layers, but no code in the lower layer can depend directly on any code in the outer layer**. 
-
-Note that the database is not center, it is **external**. The moment you grasped this concept, you have grasped the onion architecture. 
-
-## .babelrc
-
-Here you can specify the version of nodejs that you want the code to compile to. Since we are using AWS Lambda, we want the code to compile to nodejs version `6.10` (7 November 2017). If you are not bounded by this limitation, always use the current version:
-
-```
+Example IAM policy, note that you should avoid `*` in production.
+```json
 {
-  "presets": [
-    ["env", {
-      "targets": {
-        "node": "current"
-      }
-    }]
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*",
+                "cloudFormation:*",
+                "lambda:*",
+                "sqs:*",
+                "logs:*",
+                "sns:*",
+                "iam:DeleteRolePolicy",
+                "iam:DeleteRole",
+                "iam:GetRole",
+                "iam:CreateRole",
+                "iam:PutRolePolicy",
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
 }
 ```
 
@@ -76,33 +61,19 @@ Make sure you create the `.env` file or the service will not run.
 
 The `.env` should contain the following:
 ```bash
-DB_USER=user
-DB_PASS=123456
-DB_NAME=testdb
-DB_HOST=localhost
-
-FOOD_SERVICE=true
-```
-
-# Stop MySQL from your local
-
-Any running MySQL will prevent the app from connecting to the docker container.
-
-If you don't stop the MySQL, the following error might appear:
-```bash
-$ error 1044 (42000): access denied for user
-```
-
-# Starting the docker image with MySQL DB
-```bash
-$ docker-compose up -d
+SNS_TOPIC=<THE_GENERATED_SNS_TOPIC>
 ```
 
 ## Start
 
+To trigger the lambda locally:
+
 ```bash
 $ nf start
 ```
+
+This will execute the example at `scripts/trigger.js`.
+
 
 ## Test
 
@@ -124,13 +95,23 @@ $ yarn cover
 $ yarn build
 ```
 
-## Create a Table
+## Deploy and Create CloudFormation Stack
 
-```sql
-CREATE TABLE food (
-    id int NOT NULL,
-    name varchar(255) NOT NULL,
-    PRIMARY KEY (ID)
-);
+Do this for the first time:
+
+```bash
+$ make deploy
 ```
 
+## Deploy the function only
+
+```bash
+$ make deploy-function
+```
+
+## Remove lambda
+
+This operation will safely remove the lambda from S3 and clear the CloudFormation Stack.
+```bash
+$ sls remove
+```

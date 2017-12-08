@@ -11,12 +11,11 @@ AWS.config.update({
 //     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 // })
 
-const { job, welcome } = require('./data')
 const sns = new AWS.SNS()
 
-function sendJob () {
+function triggerGreet () {
   const params = {
-    Message: JSON.stringify(job),
+    Message: JSON.stringify({ name: 'John Doe' }),
     TopicArn: process.env.SNS_TOPIC
   }
 
@@ -28,20 +27,4 @@ function sendJob () {
     console.log('success', done)
   })
 }
-
-function sendWelcome () {
-  const params = {
-    Message: JSON.stringify(welcome),
-    TopicArn: process.env.SNS_TOPIC
-  }
-
-  sns.publish(params, (error, done) => {
-    if (error) {
-      console.log(error)
-      return
-    }
-    console.log('success', done)
-  })
-}
-// sendJob()
-// sendWelcome()
+triggerGreet()

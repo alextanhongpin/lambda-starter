@@ -8,44 +8,42 @@
  * Copyright (c) 2017 SeekAsia. All rights reserved.
  **/
 
-const Ajv = require('ajv')
+import Ajv from 'ajv'
+import request from 'request-promise'
 
-const jobSchema = require('../schema/job.json')
-const jobsSchema = require('../schema/jobs.json')
-const welcomeSchema = require('../schema/welcome.json')
-const emailSchema = require('../schema/email.json')
-
-const Schema = () => {
-  const ajv = new Ajv({
-    allErrors: true, // Tell AJV to return all errors, instead of just 1 error
-    removeAdditional: true, // Remove additional fields that is not specified in the payload
-    coerceTypes: true // Convert the type to the specified type (e.g. string to int)
+function Schema () {
+  const ajv = Ajv({
+    coerceTypes: true,
+    allErrors: true,
+    useDefaults: true
   })
 
-  const _schemas = {
-        // Load all your schemas here
-    welcome: ajv.compile(welcomeSchema),
-    job: ajv.compile(jobSchema),
-    jobs: ajv.compile(jobsSchema),
-    email: ajv.compile(emailSchema)
-  }
+  const schemas = {}
 
-  return (name, payload) => {
-    return new Promise((resolve, reject) => {
-      const schema = _schemas[name] ? _schemas[name] : null
+  return {
+    add (name, schema) {
+      schemas[name] = ajv.compile(schema)
+    },
+    async validate (name, params) {
+      const schema = schemas[name]
       if (!schema) {
-        return reject(new Error(`no schema with the name ${name} found`))
+        return Promise.reject(new Error(`schema ${name} does not exist`))
       }
-      const valid = schema(payload)
-
-      if (!valid) {
-        const error = new Error('invalid Schema')
-        error.message = JSON.stringify(schema.errors)
-        return reject(error)
+      const validate = schema(params)
+      if (!validate) {
+        return Promise.reject(schema.errors)
       }
-      resolve(payload)
-    })
+      return params
+    },
+    async addFromUrl (name, uri) {
+      const schema = await request({
+        uri,
+        json: true
+      })
+      schemas[name] = ajv.compile(schema)
+      return true
+    }
   }
 }
 
-export default Schema
+module.exports = Schema

@@ -1,12 +1,12 @@
-service: email
+service: greet
 
 provider:
   name: aws
-  description: Email delivery service
+  description: Greet Service
   runtime: nodejs6.10
   stage: prod
   region: ap-southeast-1
-  profile: email-delivery
+  profile: email-delivery # Your AWS Profile that contains both the secret and access key
   memorySize: 128
   stackTags:
     Application: 'Salle'
@@ -32,22 +32,22 @@ package:
     - .env
 
 functions:
-  email:
-    handler: dist/index.email
-    # NOTE: Environment variables cannot contain @ and , 
-    environment:
-      API_KEY: ${env:API_KEY}
+  greet:
+    handler: dist/index.greet
+    # NOTE: Uncomment this to pass environment variables to your application
+    # environment:
+      # API_KEY: ${env:API_KEY}
     # NOTE: Create a new SNS topic with the name `email-prod`. The function
     # will be called every time a message is sent to the `email-prod` topic.
     events:
-      - sns: email-prod
+      - sns: greet-prod
     # NOTE: Send the error to dead letter queue
     # onError: arn:aws:sqs:ap-southeast-1:*:email-dead-letter-queue-${self:provider.stage}
     # onError currently only supports SNS topic arns due to a race condition when using SQS queue arns and updating the IAM role. Please check the docs for more info.
 
 resources:
   Resources:
-    EmailLambdaFunction:
+    GreetLambdaFunction:
       Type: AWS::Lambda::Function
       Properties:
         DeadLetterConfig:
@@ -59,5 +59,5 @@ resources:
     LambdaFunctionDeadLetterQueue:
       Type: AWS::SQS::Queue
       Properties:
-        QueueName: email-dead-letter-queue-${self:provider.stage}
+        QueueName: greet-dead-letter-queue-${self:provider.stage}
         MessageRetentionPeriod: 1209600 # 14 days in seconds

@@ -1,50 +1,31 @@
 'use strict'
 
-import Email from './email-service'
-import Schema from './schema'
+import Greet from './greet-service'
 import config from './config'
+import Schema from './schema'
+import GreetSchema from './schema/greet.json'
 
 const schema = Schema()
+schema.add('greet', GreetSchema) // Load all the schemas required for the service
 
-module.exports.email = function (event, context, callback) {
-  const email = Email({ schema, config })
+module.exports.greet = function (event, context, callback) {
+  const version = config.get('version')
+  console.log(`running service ${version}`)
+
+  // Check if the data provided through the SNS is present
   const hasRecords = event.Records && event.Records.length && event.Records[0] && event.Records[0].Sns && event.Records[0].Sns.Message
   if (!hasRecords) {
     return callback(null, { message: 'No record found.' })
   }
 
-  const { sender, recipient, template, models, collections } = JSON.parse(event.Records[0].Sns.Message)
+  // Data exist but in stringified format - parse back to JSON
+  const params = JSON.parse(event.Records[0].Sns.Message)
 
-    // Match the template and return the id
-  const templateMatcher = {
-    job: config.get('jobTemplate'),
-    welcome: config.get('welcomeTemplate')
-  }
-
-  const params = {
-    sender: {
-      email: sender && sender.email,
-      name: sender && sender.name,
-      subject: sender && sender.subject
-    },
-    recipient: {
-      email: recipient && recipient.email,
-      name: recipient && recipient.name
-    },
-    api: {
-      url: config.get('apiEndpoint'),
-      key: config.get('apiKey'),
-      tags: config.get('tags')
-    },
-    template: {
-      id: templateMatcher[template && template.type],
-      type: template && template.type
-    },
-    models: Object.assign({}, models, { senderEmail: sender && sender.email }),
-    collections
-  }
-
-  email.send(params).then((ok) => {
-    callback(null, ok)
-  }).catch(callback)
+  // Initialize a new service with the schema and config
+  const greeter = Greet({ schema, config })
+  
+  greeter
+  .greet(params) // Execute the service with the params
+  .then((ok) => callback(null, ok)) // Handle success
+  .catch(callback) // Handle error
 }

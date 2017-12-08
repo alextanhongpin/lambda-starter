@@ -4,10 +4,10 @@ deploy:
 	yarn install
 	yarn build
 	yarn install --production
-	API_KEY=${API_KEY} sls deploy
+	sls deploy
 
 deploy-function:
 	yarn install
 	yarn build
 	yarn install --production
-	API_KEY=${API_KEY} sls deploy function -f email -s prod -r ap-southeast-1
+	sls deploy function -f greet -s prod -r ap-southeast-1

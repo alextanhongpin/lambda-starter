@@ -1,5 +1,5 @@
 {
-  "name": "node-rest",
+  "name": "lambda-starter",
   "version": "1.1.0",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,8 @@
     "ajv": "^5.3.0",
     "convict": "^4.0.1",
     "nodemon": "^1.12.1",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "aws-sdk": "^2.149.0",

@@ -8,11 +8,11 @@
  * Copyright (c) 2017 alextanhongpin. All rights reserved.
  **/
 
-const MockEmailStore = () => {
-  async function send () {
-    return { message: 'SUCCESS', errorcode: '0', errormessage: '' }
+const MockGreetStore = () => {
+  async function greet ({ name }) {
+    return `Hello, ${name}`
   }
-  return { send }
+  return { greet }
 }
 
-export default MockEmailStore
+export default MockGreetStore
